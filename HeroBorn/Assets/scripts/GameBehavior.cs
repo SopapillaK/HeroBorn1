@@ -9,6 +9,7 @@ public class GameBehavior : MonoBehaviour
     public string labelText = "Collect all items and win your freedom!";
     public bool showWinScreen = false;
     public int maxItems = 1;
+    public bool showLossScreen = false;
 
     private int _itemsCollected = 0;
      public int Items
@@ -39,9 +40,24 @@ public class GameBehavior : MonoBehaviour
         get { return _playerHP; }
         set { 
                 _playerHP = value;
-                Debug.LogFormat("Lives: {0}", _playerHP);
+            if (_playerHP <= 0)
+            {
+                labelText = "You want another life with that?";
+                showLossScreen = true;
+                Time.timeScale = 0;
+            }
+            else
+            {
+                labelText = "Ouch... that's got to hurt.";
+            }
         }
      }
+
+    void RestartLevel()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1.0f;
+    }
 
     void OnGUI()
     {
@@ -53,8 +69,15 @@ public class GameBehavior : MonoBehaviour
         {
             if (GUI.Button(new Rect(Screen.width/2 - 100, Screen.height/2 - 50,200,100), "YOU WON!"))
             {
-                SceneManager.LoadScene(0);
-                Time.timeScale = 1.0f;
+                RestartLevel();
+            }
+        }
+
+        if(showLossScreen)
+        {
+            if(GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You lose..."))
+            {
+                RestartLevel();
             }
         }
     }
