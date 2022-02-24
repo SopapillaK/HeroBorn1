@@ -2466,7 +2466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306087832}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -12.61, y: -3.3, z: -2.71}
+  m_LocalPosition: {x: -12.61, y: -3.61, z: -2.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8591,6 +8591,7 @@ MonoBehaviour:
   labelText: Collect all 4 items and win your freedom!
   showWinScreen: 0
   maxItems: 1
+  showLossScreen: 0
 --- !u!4 &1983889120
 Transform:
   m_ObjectHideFlags: 0
