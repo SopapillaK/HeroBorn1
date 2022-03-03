@@ -16,13 +16,18 @@ public static class Utilities
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1.0f;
-        Debug.Log("Player death: " + playerDeaths);
+
+        Debug.Log("Player deaths: " + playerDeaths);
         string message = UpdateDeathCount(ref playerDeaths);
         Debug.Log("Player deaths: " + playerDeaths);
     }
 
     public static bool RestartLevel(int sceneIndex)
     {
+        if(sceneIndex < 0)
+        {
+            throw new System.ArgumentException("Scene index cannot be negative");
+        }
         SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1.0f;
         return true;

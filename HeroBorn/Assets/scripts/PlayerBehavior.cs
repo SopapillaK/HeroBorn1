@@ -21,6 +21,9 @@ public class PlayerBehavior : MonoBehaviour
     private bool doJump = false;
     private bool doShoot = false;
 
+    public delegate void JumpingEvent();
+    public event JumpingEvent playerJump;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -49,6 +52,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
             doJump = false;
+            playerJump();
         }
 
         if(doShoot)
